@@ -1,0 +1,13 @@
+= Gentoo Neuroscience overlay =
+
+This is a Gentoo overlay that contains some local builds of my own.
+
+To use it install layman and edit your /etc/layman/layman.cfg
+to read:
+
+   overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
+               http://raw.github.com/iffsid/iffsid-local/master/repositories.xml
+
+and run:
+
+   layman -a iffsid-local

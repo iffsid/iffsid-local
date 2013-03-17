@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>iffsid-local</name>
+    <description lang="en">Assorted local ebuilds</description>
+    <homepage>https://github.com/iffsid/iffsid-local</homepage>
+    <owner type="person">
+      <email>siddharth@iffsid.com</email>
+      <name>Siddharth Narayanaswamy</name>
+    </owner>
+    <source type="rsync">/home/jeeju/work/iffsid-local/</source>
+    <source type="git">git://github.com/iffsid/iffsid-local.git</source>
+  </repo>
+</repositories>
