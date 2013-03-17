@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc lapack python static-libs"
 
-DEPEND="app-accessibiltiy/sphinxbase"
+DEPEND="app-accessibility/sphinxbase"
 RDEPEND="${DEPEND}"
 
 src_configure() {
