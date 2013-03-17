@@ -19,9 +19,9 @@ DEPEND="app-accessibility/sphinxbase"
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local myeconfargs=(
-		--prefix="/usr/local/"
-	)
+	# local myeconfargs=(
+	# 	--prefix="/usr/local/"
+	# )
 	autotools-utils_src_configure
 }
 
