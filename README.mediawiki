@@ -1,4 +1,4 @@
-= Gentoo Neuroscience overlay =
+= Iffsid Local overlay =
 
 This is a Gentoo overlay that contains some local builds of my own.
 
