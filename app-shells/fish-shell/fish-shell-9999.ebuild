@@ -18,8 +18,7 @@ IUSE="X"
 AUTOTOOLS_AUTORECONF=1
 BUILD_DIR=${WORKDIR}/${P}/
 
-DEPEND="app-doc/doxygen
-	sys-libs/ncurses
+DEPEND="sys-libs/ncurses
 	sys-devel/bc
 	sys-devel/gettext
 	www-client/htmlview
