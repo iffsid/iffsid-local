@@ -9,7 +9,6 @@
       <email>siddharth@iffsid.com</email>
       <name>Siddharth Narayanaswamy</name>
     </owner>
-    <source type="rsync">/home/jeeju/work/iffsid-local/</source>
     <source type="git">git://github.com/iffsid/iffsid-local.git</source>
   </repo>
 </repositories>
