@@ -53,7 +53,7 @@ RDEPEND="
 	)
 "
 
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} ) cudnn? ( cuda )"
 
 src_configure() {
 	# Respect CFLAGS
@@ -88,10 +88,11 @@ EOF
 
 		# This should be handled by Makefile itself, but somehow is broken
 		sed -e "/CUDA_LIB_DIR/s/lib/$(get_libdir)/" -i Makefile || die "sed failed"
-	fi
 
-	if use cudnn; then
-		echo "USE_CUDNN := 1" >> Makefile.config
+    if use cudnn; then
+		  echo "USE_CUDNN := 1" >> Makefile.config
+ 	  fi
+
   else
 		echo "CPU_ONLY := 1" >> Makefile.config
 	fi
