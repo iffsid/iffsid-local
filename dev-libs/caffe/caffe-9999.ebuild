@@ -74,12 +74,6 @@ LIBRARY_NAME_SUFFIX := -nv
 
 EOF
 
-	if use cudnn; then
-		echo "USE_CUDNN := 1" >> Makefile.config
-  else
-		echo "CPU_ONLY := 1" >> Makefile.config
-	fi
-
   if use cuda; then
 		cat >> Makefile.config << EOF
 CUDA_DIR := "${EPREFIX}/opt/cuda"
@@ -94,6 +88,12 @@ EOF
 
 		# This should be handled by Makefile itself, but somehow is broken
 		sed -e "/CUDA_LIB_DIR/s/lib/$(get_libdir)/" -i Makefile || die "sed failed"
+	fi
+
+	if use cudnn; then
+		echo "USE_CUDNN := 1" >> Makefile.config
+  else
+		echo "CPU_ONLY := 1" >> Makefile.config
 	fi
 
 	if use python; then
