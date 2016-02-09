@@ -113,7 +113,7 @@ EOF
 	fi
 
 	sed -e '/blas/s/atlas//' \
-    -e '/^LIBRARIES += openblas/LIBRARIES += openblas_threads/' \
+    -e 's/LIBRARIES += openblas/LIBRARIES += openblas_threads/' \
 		-e '/^LINKFLAGS +=/ a\
 		LINKFLAGS += -L$(LIB_BUILD_DIR)
 		' \
