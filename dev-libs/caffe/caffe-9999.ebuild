@@ -18,11 +18,11 @@ SRC_URI=""
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="cuda python"
+IUSE="cuda cudnn python"
 
 CDEPEND="
 	dev-libs/boost:=[python?]
-	media-libs/opencv:=
+	>=media-libs/opencv-3.0.0
 	dev-libs/protobuf:=[python?]
 	dev-cpp/glog:=
 	dev-cpp/gflags:=
@@ -33,6 +33,9 @@ CDEPEND="
 	cuda? (
 		dev-util/nvidia-cuda-toolkit
 	)
+  cudnn? (
+    dev-util/nvidia-cuda-cudnn
+  )
 	python? (
 		${PYTHON_DEPS}
 	)
@@ -58,13 +61,16 @@ src_configure() {
 	sed -e '/COMMON_FLAGS/s/-O2//' -i Makefile
 
 	cat > Makefile.config << EOF
-BLAS := atlas
+BLAS := open
 BUILD_DIR := build
 DISTRIBUTE_DIR := distribute
+
+OPENCV_VERSION := 3
 
 USE_PKG_CONFIG := 1
 
 LIBRARY_NAME_SUFFIX := -nv
+Q ?= @
 EOF
 
 	if use cuda; then
@@ -81,7 +87,11 @@ EOF
 
 		# This should be handled by Makefile itself, but somehow is broken
 		sed -e "/CUDA_LIB_DIR/s/lib/$(get_libdir)/" -i Makefile || die "sed failed"
-	else
+	fi
+
+	if use cudnn; then
+		echo "USE_CUDNN := 1" >> Makefile.config
+  else
 		echo "CPU_ONLY := 1" >> Makefile.config
 	fi
 
