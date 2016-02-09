@@ -67,7 +67,7 @@ DISTRIBUTE_DIR := distribute
 OPENCV_VERSION := 3
 
 BLAS := open
-BLAS_INCLUDE := $(shell pkg-config --cflags-only-I cblas | cut -c 3-)
+BLAS_INCLUDE := \$(shell pkg-config --cflags-only-I cblas | cut -c 3-)
 
 Q ?= @
 LIBRARY_NAME_SUFFIX := -nv
