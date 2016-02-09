@@ -4,7 +4,6 @@
 
 EAPI=5
 
-#EGIT_REPO_URI="git://github.com/BVLC/caffe.git"
 EGIT_REPO_URI="git://github.com/NVIDIA/caffe"
 PYTHON_COMPAT=( python2_7 )
 
@@ -61,19 +60,27 @@ src_configure() {
 	sed -e '/COMMON_FLAGS/s/-O2//' -i Makefile
 
 	cat > Makefile.config << EOF
-BLAS := open
+USE_PKG_CONFIG := 1
 BUILD_DIR := build
 DISTRIBUTE_DIR := distribute
 
 OPENCV_VERSION := 3
 
-USE_PKG_CONFIG := 1
+BLAS := open
+BLAS_INCLUDE := $(shell pkg-config --cflags-only-I cblas | cut -c 3-)
 
-LIBRARY_NAME_SUFFIX := -nv
 Q ?= @
+LIBRARY_NAME_SUFFIX := -nv
+
 EOF
 
-	if use cuda; then
+	if use cudnn; then
+		echo "USE_CUDNN := 1" >> Makefile.config
+  else
+		echo "CPU_ONLY := 1" >> Makefile.config
+	fi
+
+  if use cuda; then
 		cat >> Makefile.config << EOF
 CUDA_DIR := "${EPREFIX}/opt/cuda"
 
@@ -87,12 +94,6 @@ EOF
 
 		# This should be handled by Makefile itself, but somehow is broken
 		sed -e "/CUDA_LIB_DIR/s/lib/$(get_libdir)/" -i Makefile || die "sed failed"
-	fi
-
-	if use cudnn; then
-		echo "USE_CUDNN := 1" >> Makefile.config
-  else
-		echo "CPU_ONLY := 1" >> Makefile.config
 	fi
 
 	if use python; then
