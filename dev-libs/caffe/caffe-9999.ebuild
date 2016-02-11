@@ -5,6 +5,7 @@
 EAPI=5
 
 EGIT_REPO_URI="git://github.com/NVIDIA/caffe"
+EGIT_BRANCH="caffe-0.14"
 PYTHON_COMPAT=( python2_7 )
 
 inherit toolchain-funcs multilib git-r3 python-single-r1
@@ -113,7 +114,7 @@ EOF
 			-i Makefile || die "sed failed"
 	fi
 
-	sed -e '/blas/s/atlas//' \
+	sed -e '/blas/s/open//' \
     -e 's/LIBRARIES += openblas/LIBRARIES += openblas_threads/' \
 		-e '/^LINKFLAGS +=/ a\
 		LINKFLAGS += -L$(LIB_BUILD_DIR)
