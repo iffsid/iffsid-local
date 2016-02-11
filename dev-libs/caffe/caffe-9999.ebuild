@@ -114,7 +114,7 @@ EOF
 			-i Makefile || die "sed failed"
 	fi
 
-	sed -e '/blas/s/open//' \
+	sed -e '/blas/s/atlas//' \
     -e 's/LIBRARIES += openblas/LIBRARIES += openblas_threads/' \
 		-e '/^LINKFLAGS +=/ a\
 		LINKFLAGS += -L$(LIB_BUILD_DIR)
