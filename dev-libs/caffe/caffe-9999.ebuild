@@ -57,7 +57,9 @@ RDEPEND="
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} ) cudnn? ( cuda )"
 
 src_prepare(){
-	epatch_user
+	for i in ${FILESDIR}/*.patch; do
+		epatch "${i}"
+	done
 }
 
 src_configure() {
