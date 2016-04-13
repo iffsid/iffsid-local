@@ -56,12 +56,6 @@ RDEPEND="
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} ) cudnn? ( cuda )"
 
-src_prepare(){
-	for i in ${FILESDIR}/*.patch; do
-		epatch "${i}"
-	done
-}
-
 src_configure() {
 	# Respect CFLAGS
 	sed -e '/COMMON_FLAGS/s/-O2//' -i Makefile
