@@ -34,7 +34,7 @@ CDEPEND="
 		dev-util/nvidia-cuda-toolkit
 	)
   cudnn? (
-    dev-util/nvidia-cuda-cudnn
+	dev-util/nvidia-cuda-cudnn
   )
 	python? (
 		${PYTHON_DEPS}
@@ -56,6 +56,10 @@ RDEPEND="
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} ) cudnn? ( cuda )"
 
+src_prepare(){
+	epatch_user
+}
+
 src_configure() {
 	# Respect CFLAGS
 	sed -e '/COMMON_FLAGS/s/-O2//' -i Makefile
@@ -75,7 +79,7 @@ LIBRARY_NAME_SUFFIX := -nv
 
 EOF
 
-  if use cuda; then
+	if use cuda; then
 		cat >> Makefile.config << EOF
 CUDA_DIR := "${EPREFIX}/opt/cuda"
 
@@ -90,11 +94,11 @@ EOF
 		# This should be handled by Makefile itself, but somehow is broken
 		sed -e "/CUDA_LIB_DIR/s/lib/$(get_libdir)/" -i Makefile || die "sed failed"
 
-    if use cudnn; then
-		  echo "USE_CUDNN := 1" >> Makefile.config
- 	  fi
+		if use cudnn; then
+			echo "USE_CUDNN := 1" >> Makefile.config
+		fi
 
-  else
+	else
 		echo "CPU_ONLY := 1" >> Makefile.config
 	fi
 
@@ -115,7 +119,7 @@ EOF
 	fi
 
 	sed -e '/blas/s/atlas//' \
-    -e 's/LIBRARIES += openblas/LIBRARIES += openblas_threads/' \
+		-e 's/LIBRARIES += openblas/LIBRARIES += openblas_threads/' \
 		-e '/^LINKFLAGS +=/ a\
 		LINKFLAGS += -L$(LIB_BUILD_DIR)
 		' \
