@@ -5,7 +5,7 @@
 EAPI=5
 
 EGIT_REPO_URI="git://github.com/NVIDIA/caffe"
-EGIT_BRANCH="caffe-0.14"
+EGIT_BRANCH="caffe-0.15"
 PYTHON_COMPAT=( python2_7 )
 
 inherit toolchain-funcs multilib git-r3 python-single-r1
