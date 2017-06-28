@@ -1,11 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="3"
 PYTHON_DEPEND="2:2.5"
 
-inherit distutils
+inherit distutils-r1
 
 IUSE=""
 
