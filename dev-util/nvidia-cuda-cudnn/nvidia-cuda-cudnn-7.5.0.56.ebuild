@@ -3,7 +3,7 @@
 
 EAPI=6
 
-CUDA_PV=9.1
+CUDA_PV=9.2
 
 DESCRIPTION="NVIDIA Accelerated Deep Learning on GPU library"
 HOMEPAGE="https://developer.nvidia.com/cuDNN"
